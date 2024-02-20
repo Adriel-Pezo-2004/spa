@@ -1,44 +1,50 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Model, Connection } from 'mongoose';
+import { Model, Connection, UpdateWriteOpResult } from 'mongoose';
 import DateAttributes from 'src/schemas/date/date.entity';
 import Dated, { DateDocument } from 'src/schemas/date/date.schema';
-import { CombinedFilter } from 'src/utils/query,util';
 
 @Injectable()
-export class DateRepository extends AbstractRepository<
-    DateDocument,
-  DateAttributes
-> {
+export class DateRepository {
   protected readonly logger = new Logger(DateRepository.name);
+  async updateOneWithQuery(
+    query: Record<string, any>,
+    update: Partial<DateAttributes>,
+  ): Promise<UpdateWriteOpResult> {
+    try {
+      return await this.DateModel.updateOne(query, update);
+    } catch (error) {
+      // Puedes manejar el error de manera específica si es necesario
+      throw error;
+    }
+  }
+
+  async getDocumentByCode(code: string): Promise<DateAttributes> {
+    return this.DateModel.findOne({ code }).lean().exec();
+  }
+  
   constructor(
     @InjectModel(Dated.name)
     private readonly DateModel: Model<DateDocument>,
     private readonly connection: Connection,
-  ) {
-    super(DateModel, connection);
-  }
+  ) {}
+
   async createGenId(data: DateAttributes): Promise<DateAttributes> {
-    const dataToCreate = new this.DateModel({
-      name: data.name,
-      telefono: data.telefono,
-      servicio: data.servicio,
-      date: data.date,
-      separated: data.separated,
-      code: data.code,
-    });
-    return await super.createGenId(dataToCreate);
+    const dataToCreate = new this.DateModel(data);
+    const createdDocument = await dataToCreate.save();
+    return createdDocument.toObject();
   }
+
   async getLastCode(): Promise<string> {
-    const lastDocument = await this.DateModel.aggregate<DateAttributes>([
+    const lastDocument = await this.DateModel.aggregate([
       {
         $project: {
-          code: { $ifNull: ['$code', '000000001-0000000000'] },
+          code: { $ifNull: ['$code', '010-0000000000'] },
           secondNumber: {
             $cond: [
-              { $eq: [{ $substr: ['$code', 10, 10] }, ''] },
+              { $eq: [{ $substr: ['$code', 3, 10] }, ''] },
               0,
-              { $toInt: { $substr: ['$code', 10, 10] } },
+              { $toInt: { $substr: ['$code', 3, 10] } },
             ],
           },
         },
@@ -51,23 +57,11 @@ export class DateRepository extends AbstractRepository<
       {
         $limit: 1,
       },
-    ])
-      .allowDiskUse(true)
-      .read('secondaryPreferred');
-    const lasCode =
-      lastDocument.length > 0 ? lastDocument[0].code : '000000001-0000000000';
-    return lasCode;
-  }
+    ]).allowDiskUse(true).read('secondaryPreferred');
 
-  async updateOneWithQuery(
-    props: CombinedFilter<DateAttributes>,
-    data: Partial<DateAttributes>,
-    user?: any,
-    options?: any,
-  ): Promise<DateAttributes> {
-    if (options && options.new === true) {
-    }
-    return await this.DateModel.updateOneWithQuery(props, data, user, options);
-  }
+    const lastCode =
+      lastDocument.length > 0 ? lastDocument[0].code : '010-0000000000';
 
+    return lastCode;
+  }
 }

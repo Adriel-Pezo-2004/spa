@@ -14,17 +14,17 @@ export class DateController {
  
 
   @Delete('delete/:code')
-  async delet(@Param('code') code: string): Promise<UpdateWriteOpResult> {
-    return this.DatedService.delete(code);
+  async delete(@Param('code') code: string): Promise<void> {
+    await this.DatedService.delete(code);
   }
 
-  @Put('put/:code')
+ /* @Put('put/:code')
   async put(
     @Param('code') code: string,
     @Body() data: UpdateDateDto,
   ): Promise<any> {
     return this.DatedService.put(code, data);
-  }
+  }*/
 
   //Post
 
