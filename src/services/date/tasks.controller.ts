@@ -1,7 +1,7 @@
 import { Controller, Get, Post, Put, Delete, Body, Param, ConflictException, NotFoundException, HttpCode } from '@nestjs/common';
 import { TasksService } from './tasks.service';
-import { CreateTaskDto } from 'src/dto/create-task.dto';
-import { UpdateTaskDto } from 'src/dto/update-task.dto';
+import { CreateTaskDto } from 'src/services/date/dto/create-task.dto';
+import { UpdateTaskDto } from 'src/services/date/dto/update-task.dto';
 
 @Controller('tasks')
 export class TasksController {

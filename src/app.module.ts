@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { TasksModule } from './tasks/tasks.module';
+import { TasksModule } from './services/date/tasks.module';
 import { MongooseModule } from '@nestjs/mongoose';
 
 @Module({
