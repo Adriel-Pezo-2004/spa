@@ -4,21 +4,19 @@ import DateAttributes from 'src/schemas/date/date.entity';
 import { UpdateWriteOpResult } from 'mongoose';
 import { UpdateDateDto } from './dto/update-date.dto';
 import { CreateDateDto } from './dto/create-date.dto';
+import { DateService } from './trs-date.service';
 
 
 @ApiTags('trs-date')
 @Controller('trs-date')
 export class DateController {
-  constructor(private readonly DateService: DateService) {}
+  constructor(private readonly DatedService: DateService) {}
  
-  @Get('get/:code')
-  get_one(@Param('code') code: string): Promise<DateAttributes> {
-    return this.DateService.get_one(code);
-  }
+ 
 
   @Delete('delete/:code')
   async delet(@Param('code') code: string): Promise<UpdateWriteOpResult> {
-    return this.DateService.delet(code);
+    return this.DatedService.delet(code);
   }
 
   @Put('put/:code')
@@ -26,14 +24,14 @@ export class DateController {
     @Param('code') code: string,
     @Body() data: UpdateDateDto,
   ): Promise<any> {
-    return this.DateService.put(code, data);
+    return this.DatedService.put(code, data);
   }
 
   //Post
 
   @Post('set')
   async set(@Body() data: CreateDateDto): Promise<DateAttributes> {
-    return this.DateService.set(data);
+    return this.DatedService.set(data);
   }
   
 }
