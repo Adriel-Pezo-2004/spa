@@ -24,7 +24,7 @@ export class DateRepository {
     const lastDocument = await this.DateModel.aggregate([
       {
         $project: {
-          code: { $ifNull: ['$code', '000000001-0000000000'] },
+          code: { $ifNull: ['$code', '010-0000000000'] },
           secondNumber: {
             $cond: [
               { $eq: [{ $substr: ['$code', 10, 10] }, ''] },
