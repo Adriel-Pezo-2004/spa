@@ -40,7 +40,7 @@ export class UpdateDateDto extends PartialType(
       servicio: ServiceAttributes;
   
       @ApiProperty({
-          required: true,
+          required: false,
       })
       @IsDate()
       @IsNotEmpty()

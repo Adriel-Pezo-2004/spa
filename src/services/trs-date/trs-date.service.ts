@@ -40,7 +40,6 @@ import {
           name,
           telefono,
           servicio,
-          date,
           separated,
           code: nextCode,
         };

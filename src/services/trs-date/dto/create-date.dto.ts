@@ -7,14 +7,7 @@ import ServiceAttributes from 'src/schemas/service/service.entity';
 export class CreateDateDto extends OmitType(DateAttributes, [
     'code',
 ] as const) {
-    @ApiProperty({
-        required: true,
-        description: 'Id for old version'
-    })
-    @IsString()
-    @IsNotEmpty()
-    code?: string;
-
+   
     @ApiProperty({
         required: true,
     })
@@ -40,10 +33,9 @@ export class CreateDateDto extends OmitType(DateAttributes, [
     servicio: ServiceAttributes;
 
     @ApiProperty({
-        required: true,
+        required: false,
     })
     @IsDate()
-    @IsNotEmpty()
     date: Date;
 
     @ApiProperty({
