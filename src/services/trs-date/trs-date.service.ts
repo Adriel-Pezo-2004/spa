@@ -3,37 +3,51 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { DateErrors } from 'src/schemas/date/date.error';
 import Dated, { DateDocument } from 'src/schemas/date/date.schema';
+import { CreateDateDto } from './dto/create-date.dto';
+import DateAttributes from 'src/schemas/date/date.entity';
+import { DateRepository } from './trs-date.repository';
 
 @Injectable()
 export class DateService {
-  constructor(
-    @InjectModel(Dated.name)
-    private readonly dateModel: Model<DateDocument>,
-  ) {}
+  constructor(private readonly dateRepository: DateRepository) {}
 
-  async deleteDate(code: string): Promise<void> {
+  async set(dataDto: CreateDateDto): Promise<DateAttributes> {
     try {
-      const existingDate = await this.dateModel.findOne({ code, idDelete: '0' });
+      const { name, telefono, servicio, date, separated } = dataDto;
+      const lastCode = await this.dateRepository.getLastCode();
 
-      if (!existingDate) {
-        throw new HttpException(
-          {
-            message: DateErrors.DATE_NOT_FOUND,
-            statusCode: HttpStatus.BAD_REQUEST,
-          },
-          HttpStatus.BAD_REQUEST,
-        );
-      }
+      const incrementar = (cadena: string) => {
+        const parts = cadena.split('-');
+        const left = parts[0];
+        const right = String(Number(parts[1]) + 1).padStart(parts[1].length, '0');
+        return `${left}-${right}`;
+      };
 
-      await this.dateModel.updateOne({ code }, { idDelete: '1' });
+      const nextCode = incrementar(lastCode);
+
+      const dataToSave: DateAttributes = {
+        name,
+        telefono,
+        servicio,
+        date,
+        separated,
+        code: nextCode,
+      };
+
+      return this.dateRepository.createGenId(dataToSave);
     } catch (error) {
       throw new HttpException(
         {
-          message: DateErrors.DATE_DELETE_ERROR,
-          statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
+          message: DateErrors.DATE_CREATE_ERROR,
+          statusCode: HttpStatus.BAD_REQUEST,
         },
-        HttpStatus.INTERNAL_SERVER_ERROR,
+        HttpStatus.BAD_REQUEST,
       );
     }
   }
+
+
+
+
+
 }
