@@ -27,9 +27,9 @@ export class DateRepository {
           code: { $ifNull: ['$code', '010-0000000000'] },
           secondNumber: {
             $cond: [
-              { $eq: [{ $substr: ['$code', 10, 10] }, ''] },
+              { $eq: [{ $substr: ['$code', 3, 10] }, ''] },
               0,
-              { $toInt: { $substr: ['$code', 10, 10] } },
+              { $toInt: { $substr: ['$code', 3, 10] } },
             ],
           },
         },
@@ -45,7 +45,7 @@ export class DateRepository {
     ]).allowDiskUse(true).read('secondaryPreferred');
 
     const lastCode =
-      lastDocument.length > 0 ? lastDocument[0].code : '000000001-0000000000';
+      lastDocument.length > 0 ? lastDocument[0].code : '010-0000000000';
 
     return lastCode;
   }
