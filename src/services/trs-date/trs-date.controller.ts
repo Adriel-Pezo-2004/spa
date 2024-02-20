@@ -6,7 +6,6 @@ import { UpdateDateDto } from './dto/update-date.dto';
 import { CreateDateDto } from './dto/create-date.dto';
 import { DateService } from './trs-date.service';
 
-
 @ApiTags('trs-date')
 @Controller('trs-date')
 export class DateController {
@@ -16,7 +15,7 @@ export class DateController {
 
   @Delete('delete/:code')
   async delet(@Param('code') code: string): Promise<UpdateWriteOpResult> {
-    return this.DatedService.delet(code);
+    return this.DatedService.delete(code);
   }
 
   @Put('put/:code')
