@@ -1,6 +1,8 @@
-import { Schema } from "mongoose";
+import { Model, Mongoose, Schema } from "mongoose";
 import { ServiceSchema } from "../service/service.schema";
+import IssueAttributes from "./issue.entity";
 
+export type IssueDocument = Document & IssueAttributes;
 export const IssueSchema: Schema = new Schema (
     {
         _id: {
@@ -19,11 +21,11 @@ export const IssueSchema: Schema = new Schema (
 );
 
 
-/*
+
 const Issue  = (mongoose: Mongoose) =>
   mongoose.model<IssueDocument>('Date', IssueSchema, 'trs-issue') as Model<
     IssueDocument,
     Record<string, unknown>
   >;
 
-export default Issue;*/
+export default Issue;

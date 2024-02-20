@@ -1,7 +1,8 @@
 import { ApiProperty } from '@nestjs/swagger';
 import {IsNotEmpty, IsOptional, IsString} from 'class-validator';
+import { IDeletableModel } from 'src/IDelete/IDelete.model';
 
-export default class ServiceAttributes{
+export default class ServiceAttributes extends IDeletableModel{
     @ApiProperty({
         required: true,
         description: 'Id for old version'

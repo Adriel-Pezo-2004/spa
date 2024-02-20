@@ -1,5 +1,5 @@
 import { Controller, Get, Post, Put, Delete, Body, Param, ConflictException, NotFoundException, HttpCode } from '@nestjs/common';
-import { TasksService } from './tasks.service';
+import { TasksService } from './trs-date.service';
 import { CreateTaskDto } from 'src/services/date/dto/create-task.dto';
 import { UpdateTaskDto } from 'src/services/date/dto/update-task.dto';
 

@@ -1,5 +1,7 @@
-import { Schema } from "mongoose";
+import { Model, Mongoose, Schema } from "mongoose";
+import WorkersAttributes from "./workers.entity";
 
+export type WorkersDocument = Document & WorkersAttributes;
 export const WorkersSchema: Schema = new Schema (
     {
         _id: {
@@ -16,7 +18,6 @@ export const WorkersSchema: Schema = new Schema (
     { timestamps: true },
 );
 
-/*
 
 const workers  = (mongoose: Mongoose) =>
   mongoose.model<WorkersDocument>('Workers', WorkersSchema, 'mst-workers') as Model<
@@ -24,4 +25,4 @@ const workers  = (mongoose: Mongoose) =>
     Record<string, unknown>
   >;
 
-export default workers;*/
+export default workers;

@@ -1,10 +1,12 @@
-import { ApiProperty } from "@nestjs/swagger";
-import { Type } from "class-transformer";
-import { IsDate, IsNotEmpty, IsObject, IsOptional, IsString, ValidateNested } from "class-validator";
-import ServiceAttributes from "../service/service.entity";
-import { IDeletableModel } from "src/IDelete/IDelete.model";
+import { ApiProperty, OmitType } from '@nestjs/swagger';
+import { Type } from 'class-transformer';
+import { IsString, IsOptional, IsNotEmpty, ValidateNested, IsObject, IsDate } from 'class-validator'
+import DateAttributes from 'src/schemas/date/date.entity';
+import ServiceAttributes from 'src/schemas/service/service.entity';
 
-export default class DateAttributes extends IDeletableModel{
+export class CreateDateDto extends OmitType(DateAttributes, [
+    'code',
+] as const) {
     @ApiProperty({
         required: true,
         description: 'Id for old version'

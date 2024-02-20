@@ -1,6 +1,8 @@
-import { Schema } from "mongoose";
+import { Model, Mongoose, Schema } from "mongoose";
 import { ServiceSchema } from "../service/service.schema";
+import DateAttributes from "./date.entity";
 
+export type DateDocument = Document & DateAttributes;
 export const DateSchema: Schema = new Schema (
     {
         _id: {
@@ -21,10 +23,10 @@ export const DateSchema: Schema = new Schema (
 );
 
 
-/*const Dated  = (mongoose: Mongoose) =>
+const Dated  = (mongoose: Mongoose) =>
   mongoose.model<DateDocument>('Date', DateSchema, 'trs-date') as Model<
     DateDocument,
     Record<string, unknown>
   >;
 
-export default Dated;*/
+export default Dated;

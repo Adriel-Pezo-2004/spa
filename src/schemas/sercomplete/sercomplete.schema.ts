@@ -1,6 +1,8 @@
-import { Schema } from "mongoose";
+import { Model, Mongoose, Schema } from "mongoose";
 import { ServiceSchema } from "../service/service.schema";
+import SerCompleteAttributes from "./sercomplete.entity";
 
+export type SerCompleteDocument = Document & SerCompleteAttributes;
 export const SerCompleteSchema: Schema = new Schema (
     {
         _id: {
@@ -18,11 +20,11 @@ export const SerCompleteSchema: Schema = new Schema (
     { timestamps: true },
 );
 
-/*
+
 const SerComplete  = (mongoose: Mongoose) =>
   mongoose.model<SerCompleteDocument>('serComplete', SerCompleteSchema, 'trs-serComplete') as Model<
   SerCompleteDocument,
     Record<string, unknown>
   >;
 
-export default SerComplete;*/
+export default SerComplete;

@@ -1,5 +1,7 @@
-import { Schema } from "mongoose";
+import { Model, Mongoose, Schema } from "mongoose";
+import ServiceAttributes from "./service.entity";
 
+export type ServiceDocument = Document & ServiceAttributes;
 export const ServiceSchema: Schema = new Schema (
     {
         _id: {
@@ -18,11 +20,11 @@ export const ServiceSchema: Schema = new Schema (
 );
 
 
-/*
+
 const Service  = (mongoose: Mongoose) =>
   mongoose.model<ServiceDocument>('Service', ServiceSchema, 'mst-service') as Model<
     ServiceDocument,
     Record<string, unknown>
   >;
 
-export default Service;*/
+export default Service;
