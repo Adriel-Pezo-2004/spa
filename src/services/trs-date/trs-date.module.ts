@@ -1,16 +1,17 @@
 import { Module } from '@nestjs/common';
-import { TasksController } from './trs-date.controller';
-import { TasksService } from './trs-date.service';
+import { DateController } from './trs-date.controller';
+import { DateService } from './trs-date.service';
 import { MongooseModule } from '@nestjs/mongoose';
 import { Mongoose } from 'mongoose';
-import { Task, TaskSchema } from '../schemas/task.schema';
+import { DateSchema } from 'src/schemas/date/date.schema';
+import { DateRepository } from './trs-date.repository';
 
 @Module({
   imports: [MongooseModule.forFeature([{
-    name: Task.name,
-    schema: TaskSchema,
+    name: Date.name,
+    schema: DateSchema,
   }])],
-  controllers: [TasksController],
-  providers: [TasksService],
+  controllers: [DateController],
+  providers: [DateService, DateRepository],
 })
-export class TasksModule {}
+export class DateModule {}
