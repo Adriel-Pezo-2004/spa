@@ -10,8 +10,9 @@ import { DateRepository } from './trs-date.repository';
   imports: [MongooseModule.forFeature([{
     name: Date.name,
     schema: DateSchema,
-  }])],
+  }],)],
   controllers: [DateController],
   providers: [DateService, DateRepository],
+  exports: [DateRepository]
 })
-export class DateModule {}
+export class DateModule{}

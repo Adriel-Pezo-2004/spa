@@ -1,7 +1,9 @@
 import { Model, Mongoose, Schema } from "mongoose";
 import { ServiceSchema } from "../service/service.schema";
 import DateAttributes from "./date.entity";
+import { ModelExt } from "src/methods/shared.methods.class";
 
+export type DateModelExt<T> = ModelExt<T>;
 export type DateDocument = Document & DateAttributes;
 export const DateSchema: Schema = new Schema (
     {

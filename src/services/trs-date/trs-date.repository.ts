@@ -2,11 +2,14 @@ import { Injectable, Logger } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model, Connection, UpdateWriteOpResult } from 'mongoose';
 import DateAttributes from 'src/schemas/date/date.entity';
-import Dated, { DateDocument } from 'src/schemas/date/date.schema';
+import Dated, { DateDocument, DateModelExt } from 'src/schemas/date/date.schema';
 
 @Injectable()
 export class DateRepository {
+
+  private readonly DateModel: DateModelExt<DateDocument>
   protected readonly logger = new Logger(DateRepository.name);
+
   async updateOneWithQuery(
     query: Record<string, any>,
     update: Partial<DateAttributes>,
@@ -22,12 +25,7 @@ export class DateRepository {
   async getDocumentByCode(code: string): Promise<DateAttributes> {
     return this.DateModel.findOne({ code }).lean().exec();
   }
-  
-  constructor(
-    @InjectModel(Dated.name)
-    private readonly DateModel: Model<DateDocument>,
-    private readonly connection: Connection,
-  ) {}
+
 
   async createGenId(data: DateAttributes): Promise<DateAttributes> {
     const dataToCreate = new this.DateModel(data);
