@@ -1,48 +1,39 @@
-import { Controller, Get, Post, Put, Delete, Body, Param, ConflictException, NotFoundException, HttpCode } from '@nestjs/common';
-import { TasksService } from './trs-date.service';
-import { CreateTaskDto } from 'src/services/date/dto/create-task.dto';
-import { UpdateTaskDto } from 'src/services/date/dto/update-task.dto';
+import { Controller, Get, Post, Put, Delete, Body, Param, ConflictException, NotFoundException, HttpCode, HttpStatus } from '@nestjs/common';
+import { ApiResponse, ApiTags } from '@nestjs/swagger';
+import DateAttributes from 'src/schemas/date/date.entity';
+import { UpdateWriteOpResult } from 'mongoose';
+import { UpdateDateDto } from './dto/update-date.dto';
+import { CreateDateDto } from './dto/create-date.dto';
 
-@Controller('tasks')
-export class TasksController {
-    constructor(private tasksService: TasksService) {}
 
-    @Get()
-    findAll(){
-        return this.tasksService.findAll();
-    }
+@ApiTags('trs-date')
+@Controller('trs-date')
+export class DateController {
+  constructor(private readonly DateService: DateService) {}
+ 
+  @Get('get/:code')
+  get_one(@Param('code') code: string): Promise<DateAttributes> {
+    return this.DateService.get_one(code);
+  }
 
-    @Get(':id')
-    async findOne(@Param('id') id: string){
-        const tasks = await this.tasksService.findOne(id);
-        if (!tasks) throw new NotFoundException('Tasks not found');
-        return tasks;        
-    }
+  @Delete('delete/:code')
+  async delet(@Param('code') code: string): Promise<UpdateWriteOpResult> {
+    return this.DateService.delet(code);
+  }
 
-    @Post()
-    async create(@Body() body: CreateTaskDto) {
-        try {
-            return await this.tasksService.create(body);
-        } catch (error) {
-            if (error.code === 11000){
-                throw new ConflictException("Task Already Exists")
-            }
-            throw error;
-        }
-    }
+  @Put('put/:code')
+  async put(
+    @Param('code') code: string,
+    @Body() data: UpdateDateDto,
+  ): Promise<any> {
+    return this.DateService.put(code, data);
+  }
 
-    @Delete(':id') 
-    @HttpCode(204)
-    async delete(@Param('id') id: string){
-        const tasks = await this.tasksService.delete(id);
-        if (!tasks) throw new NotFoundException('Tasks not found');
-        return tasks;
-    }
+  //Post
 
-    @Put(':id')
-    async update(@Param('id') id: string, @Body() body: UpdateTaskDto){
-        const tasks = await this.tasksService.update(id, body);
-        if (!tasks) throw new NotFoundException('Tasks not found');
-        return tasks;
-    }
+  @Post('set')
+  async set(@Body() data: CreateDateDto): Promise<DateAttributes> {
+    return this.DateService.set(data);
+  }
+  
 }
