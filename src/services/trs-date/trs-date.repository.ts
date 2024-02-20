@@ -3,6 +3,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model, Connection } from 'mongoose';
 import DateAttributes from 'src/schemas/date/date.entity';
 import Dated, { DateDocument } from 'src/schemas/date/date.schema';
+import { CombinedFilter } from 'src/utils/query,util';
 
 @Injectable()
 export class DateRepository extends AbstractRepository<
@@ -57,4 +58,16 @@ export class DateRepository extends AbstractRepository<
       lastDocument.length > 0 ? lastDocument[0].code : '000000001-0000000000';
     return lasCode;
   }
+
+  async updateOneWithQuery(
+    props: CombinedFilter<DateAttributes>,
+    data: Partial<DateAttributes>,
+    user?: any,
+    options?: any,
+  ): Promise<DateAttributes> {
+    if (options && options.new === true) {
+    }
+    return await this.DateModel.updateOneWithQuery(props, data, user, options);
+  }
+
 }
