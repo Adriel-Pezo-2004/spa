@@ -1,6 +1,7 @@
 import { Injectable, HttpStatus, HttpException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
+import { DateErrors } from 'src/schemas/date/date.error';
 import Dated, { DateDocument } from 'src/schemas/date/date.schema';
 
 @Injectable()
@@ -10,14 +11,6 @@ export class DateService {
     private readonly dateModel: Model<DateDocument>,
   ) {}
 
-
-
-
-  /*
-  / Delete por code 
-  /
-  /
-  */ 
   async deleteDate(code: string): Promise<void> {
     try {
       const existingDate = await this.dateModel.findOne({ code, idDelete: '0' });
@@ -25,7 +18,7 @@ export class DateService {
       if (!existingDate) {
         throw new HttpException(
           {
-            message: 'Date not found',
+            message: DateErrors.DATE_NOT_FOUND,
             statusCode: HttpStatus.BAD_REQUEST,
           },
           HttpStatus.BAD_REQUEST,
@@ -36,7 +29,7 @@ export class DateService {
     } catch (error) {
       throw new HttpException(
         {
-          message: 'Error deleting date',
+          message: DateErrors.DATE_DELETE_ERROR,
           statusCode: HttpStatus.INTERNAL_SERVER_ERROR,
         },
         HttpStatus.INTERNAL_SERVER_ERROR,
