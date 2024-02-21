@@ -9,12 +9,8 @@ import Dated, { DateDocument, DateModelExt } from 'src/schemas/date/date.schema'
 @Injectable()
   export class DateRepository{
     protected readonly logger = new Logger(DateRepository.name);
-  
-    constructor(
-      @InjectModel(Dated.name)
-      private readonly DateModel: DateModelExt<DateDocument>,
-      @InjectConnection() connection: Connection,
-    ) {}
+    private readonly DateModel: DateModelExt<DateDocument>
+    
 
 
     async updateOneWithQuery(
