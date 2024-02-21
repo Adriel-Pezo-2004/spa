@@ -11,9 +11,9 @@ import { get } from "mongoose";
 export class ServiceService {
   constructor(private readonly serviceRepository: ServiceRepository) {}
 
-  async set(dataDto: CreateServiceDto): Promise<ServiceAttributes> {
+  async set(serviceDto: CreateServiceDto): Promise<ServiceAttributes> {
     try {
-      const { name, price, active } = dataDto;
+      const { name, price, active } = serviceDto;
       const lastCode = await this.serviceRepository.getLastCode();
       //aqui incrementemos el numero
       const incrementar = (cadena: string) => {
@@ -35,7 +35,7 @@ export class ServiceService {
       };
       return this.serviceRepository.createGenId(dataToSave);
     } catch (err) {
-      throw get(err, 'status')
+      throw get(err)
         ? err
         : new HttpException(
             {
