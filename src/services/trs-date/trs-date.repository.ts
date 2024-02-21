@@ -39,32 +39,37 @@ import Dated, { DateDocument, DateModelExt } from 'src/schemas/date/date.schema'
       return await this.createGenId(dataToCreate);
     }
     async getLastCode(): Promise<string> {
-      const lastDocument = await this.DateModel.aggregate<DateAttributes>([
-        {
-          $project: {
-            code: { $ifNull: ['$code', '01-0000000000'] },
-            secondNumber: {
-              $cond: [
-                { $eq: [{ $substr: ['$code', 2, 10] }, ''] },
-                0,
-                { $toInt: { $substr: ['$code', 2, 10] } },
-              ],
+      try {
+        const lastDocument = await this.DateModel.collection.aggregate([
+          {
+            $project: {
+              code: { $ifNull: ['$code', '01-0000000000'] },
+              secondNumber: {
+                $cond: [
+                  { $eq: [{ $substr: ['$code', 2, 10] }, ''] },
+                  0,
+                  { $toInt: { $substr: ['$code', 2, 10] } },
+                ],
+              },
             },
           },
-        },
-        {
-          $sort: {
-            secondNumber: -1,
+          {
+            $sort: {
+              secondNumber: -1,
+            },
           },
-        },
-        {
-          $limit: 1,
-        },
-      ])
-        .allowDiskUse(true)
-        .read('secondaryPreferred');
-      const lasCode =
-        lastDocument.length > 0 ? lastDocument[0].code : '01-0000000000';
-      return lasCode;
+          {
+            $limit: 1,
+          },
+        ]).toArray();
+  
+        const lastCode =
+          lastDocument.length > 0 ? lastDocument[0].code : '01-0000000000';
+        
+        return lastCode;
+      } catch (error) {
+        console.error(error);  // Manejar el error según sea necesario
+        return '01-0000000000'; // O proporcionar un valor predeterminado en caso de error
+      }
     }
 }
