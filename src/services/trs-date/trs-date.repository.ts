@@ -40,32 +40,14 @@ import Dated, { DateDocument, DateModelExt } from 'src/schemas/date/date.schema'
     }
     async getLastCode(): Promise<string> {
       try {
-        const lastDocument = await this.DateModel.collection.aggregate([
-          {
-            $project: {
-              code: { $ifNull: ['$code', '01-0000000000'] },
-              secondNumber: {
-                $cond: [
-                  { $eq: [{ $substr: ['$code', 2, 10] }, ''] },
-                  0,
-                  { $toInt: { $substr: ['$code', 2, 10] } },
-                ],
-              },
-            },
-          },
-          {
-            $sort: {
-              secondNumber: -1,
-            },
-          },
-          {
-            $limit: 1,
-          },
-        ]).toArray();
+        const lastDocument = await this.DateModel
+          .find({})
+          .sort({ code: -1 })
+          .limit(1);
   
         const lastCode =
           lastDocument.length > 0 ? lastDocument[0].code : '01-0000000000';
-        
+  
         return lastCode;
       } catch (error) {
         console.error(error);  // Manejar el error según sea necesario
