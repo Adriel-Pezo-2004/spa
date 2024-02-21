@@ -36,5 +36,4 @@ export default class IssueAttributes extends IDeletableModel {
     @Type(() => ServiceAttributes)
     @IsOptional()
     servicio?: ServiceAttributes;
-
 }

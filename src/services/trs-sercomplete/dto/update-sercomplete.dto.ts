@@ -4,7 +4,7 @@ import { IsString, IsBoolean, IsOptional, IsNotEmpty, ValidateNested, IsObject, 
 import SerCompleteAttributes from 'src/schemas/sercomplete/sercomplete.entity';
 import ServiceAttributes from 'src/schemas/service/service.entity';
 
-export class UpdateDateDto extends PartialType(
+export class UpdateSercompleteDto extends PartialType(
     OmitType(SerCompleteAttributes, ['code'] as const),
   ) {
       @ApiProperty({

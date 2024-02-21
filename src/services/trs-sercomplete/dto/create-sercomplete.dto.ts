@@ -4,7 +4,7 @@ import { IsString, IsOptional, IsNotEmpty, ValidateNested, IsObject, IsDate } fr
 import SerCompleteAttributes from 'src/schemas/sercomplete/sercomplete.entity';
 import ServiceAttributes from 'src/schemas/service/service.entity';
 
-export class CreateDateDto extends OmitType(SerCompleteAttributes, [
+export class CreateSercompleteDto extends OmitType(SerCompleteAttributes, [
     'code',
 ] as const) {
     @ApiProperty({
