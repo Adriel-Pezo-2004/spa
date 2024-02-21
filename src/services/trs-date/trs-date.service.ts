@@ -17,36 +17,34 @@ import { get } from 'lodash';
       try {
         const { name, telefono, servicio, separated } = dataDto;
         const lastCode = await this.dateRepository.getLastCode();
-        //aqui incrementemos el numero
+  
         const incrementar = (cadena: string) => {
           const parts = cadena.split('-');
           const left = parts[0];
-          const rigth = String(Number(parts[1]) + 1).padStart(
-            parts[1].length,
-            '0',
-          );
-  
-          return `${left}-${rigth}`;
+          const right = String(Number(parts[1]) + 1).padStart(parts[1].length, '0');
+          return `${left}-${right}`;
         };
+  
         const nextCode = incrementar(lastCode);
+  
         const dataToSave: DateAttributes = {
-          name: name,
-          telefono: telefono,
-          servicio: servicio,
-          separated: separated,
+          name,
+          telefono,
+          servicio,
+          separated,
           code: nextCode,
         };
+  
         return this.dateRepository.createGenId(dataToSave);
-      } catch (err) {
-        throw get(err, 'status')
-          ? err
-          : new HttpException(
-              {
-                message: DateErrors.DATE_CREATE_ERROR,
-                statusCode: HttpStatus.BAD_REQUEST,
-              },
-              HttpStatus.BAD_REQUEST,
-            );
+      } catch (error) {
+        console.log(error)
+        throw new HttpException(
+          {
+            message: DateErrors.DATE_CREATE_ERROR,
+            statusCode: HttpStatus.BAD_REQUEST,
+          },
+          HttpStatus.BAD_REQUEST,
+        );
       }
     }
   

@@ -4,8 +4,6 @@ import { Model, Connection, UpdateWriteOpResult } from 'mongoose';
 import DateAttributes from 'src/schemas/date/date.entity';
 import Dated, { DateDocument, DateModelExt } from 'src/schemas/date/date.schema';
 
-  
-
 @Injectable()
 export class DateRepository extends AbstractRepository<
     DateDocument,
@@ -59,4 +57,23 @@ export class DateRepository extends AbstractRepository<
       lastDocument.length > 0 ? lastDocument[0].code : '000000001-0000000000';
     return lasCode;
   }
+
+  async updateOneWithQuery(
+    query: Record<string, any>,
+    update: Partial<DateAttributes>,
+  ): Promise<UpdateWriteOpResult> {
+    try {
+      return await this.DateModel.updateOne(query, update);
+    } catch (error) {
+      // Puedes manejar el error de manera específica si es necesario
+      throw error;
+    }
+  }
+
+  async getDocumentByCode(code: string): Promise<DateAttributes> {
+    return this.DateModel.findOne({ code }).lean().exec();
+  }
 }
+
+
+   
