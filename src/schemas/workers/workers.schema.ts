@@ -1,5 +1,10 @@
 import { Model, Mongoose, Schema } from "mongoose";
 import WorkersAttributes from "./workers.entity";
+import { ModelExt } from "src/methods/shared.methods.class";
+
+
+
+export type WorkersModelExt<T> = ModelExt<T>;
 
 export type WorkersDocument = Document & WorkersAttributes;
 export const WorkersSchema: Schema = new Schema (
