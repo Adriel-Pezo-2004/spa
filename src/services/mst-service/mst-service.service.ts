@@ -3,6 +3,7 @@ import { CreateServiceDto } from "./dto/create-service.dto";
 import ServiceAttributes from "src/schemas/service/service.entity";
 import { ServiceErrors } from "src/schemas/service/service.error";
 import { ServiceRepository } from "./mst-service.repository";
+import { get } from "mongoose";
 
 
 
@@ -14,33 +15,35 @@ export class ServiceService {
     try {
       const { name, price, active } = dataDto;
       const lastCode = await this.serviceRepository.getLastCode();
-
+      //aqui incrementemos el numero
       const incrementar = (cadena: string) => {
         const parts = cadena.split('-');
         const left = parts[0];
-        const right = String(Number(parts[1]) + 1).padStart(parts[1].length, '0');
-        return `${left}-${right}`;
+        const rigth = String(Number(parts[1]) + 1).padStart(
+          parts[1].length,
+          '0',
+        );
+
+        return `${left}-${rigth}`;
       };
-
       const nextCode = incrementar(lastCode);
-
       const dataToSave: ServiceAttributes = {
-        name,
-        price,
-        active,
+        name: name,
+        price: price,
+        active: active,
         code: nextCode,
       };
-
       return this.serviceRepository.createGenId(dataToSave);
-    } catch (error) {
-      console.log(error)
-      throw new HttpException(
-        {
-          message: ServiceErrors.SERVICE_CREATE_ERROR,
-          statusCode: HttpStatus.BAD_REQUEST,
-        },
-        HttpStatus.BAD_REQUEST,
-      );
+    } catch (err) {
+      throw get(err, 'status')
+        ? err
+        : new HttpException(
+            {
+              message: ServiceErrors.SERVICE_CREATE_ERROR,
+              statusCode: HttpStatus.BAD_REQUEST,
+            },
+            HttpStatus.BAD_REQUEST,
+          );
     }
   }
 
