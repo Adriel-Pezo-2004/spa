@@ -32,5 +32,4 @@ export class DateController {
   async set(@Body() data: CreateDateDto): Promise<DateAttributes> {
     return this.DatedService.set(data);
   }
-  
 }
