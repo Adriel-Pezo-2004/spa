@@ -6,7 +6,7 @@ import { IDeletableModel } from "src/IDelete/IDelete.model";
 
 export default class DateAttributes extends IDeletableModel{
     @ApiProperty({
-        required: false,
+        required: true,
         description: 'Id for old version'
     })
     @IsString()
@@ -37,7 +37,12 @@ export default class DateAttributes extends IDeletableModel{
     @IsOptional()
     servicio: ServiceAttributes;
 
-
+    @ApiProperty({
+        required: true,
+    })
+    @IsDate()
+    @IsNotEmpty()
+    date: Date;
 
     @ApiProperty({
         required: false,
