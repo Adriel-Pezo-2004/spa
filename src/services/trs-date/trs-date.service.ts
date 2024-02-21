@@ -6,17 +6,8 @@ import Dated, { DateDocument } from 'src/schemas/date/date.schema';
 import { CreateDateDto } from './dto/create-date.dto';
 import DateAttributes from 'src/schemas/date/date.entity';
 import { DateRepository } from './trs-date.repository';
-import {
-    andWhere,
-    buildQuery,
-    CombinedFilter,
-    Normalizers,
-    Ops,
-    seed,
-    where,
-  } from '../../utils/query,util';
   
-  import { get } from 'lodash';
+import { get } from 'lodash';
 
   @Injectable()
   export class DateService {

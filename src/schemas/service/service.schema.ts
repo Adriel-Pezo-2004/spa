@@ -1,6 +1,9 @@
 import { Model, Mongoose, Schema } from "mongoose";
 import ServiceAttributes from "./service.entity";
+import { ModelExt } from "src/methods/shared.methods.class";
 
+
+export type ServiceModelExt<T> = ModelExt<T>;
 export type ServiceDocument = Document & ServiceAttributes;
 export const ServiceSchema: Schema = new Schema (
     {
