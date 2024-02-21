@@ -7,7 +7,7 @@ import { ServiceRepository } from "./mst-service.repository";
 
 
 @Injectable()
-export class DateService {
+export class ServiceService {
   constructor(private readonly serviceRepository: ServiceRepository) {}
 
   async set(dataDto: CreateServiceDto): Promise<ServiceAttributes> {
