@@ -6,8 +6,8 @@ import { UpdateServiceDto } from './dto/update-service.dto';
 import { CreateServiceDto } from './dto/create-service.dto';
 import { ServiceService } from './mst-service.service';
 
-@ApiTags('trs-date')
-@Controller('trs-date')
+@ApiTags('mst-service')
+@Controller('mst-service')
 export class ServiceController {
   constructor(private readonly ServicedService: ServiceService) {}
  
