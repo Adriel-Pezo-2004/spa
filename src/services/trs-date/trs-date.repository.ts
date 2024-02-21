@@ -6,7 +6,7 @@ import Dated, { DateDocument, DateModelExt } from 'src/schemas/date/date.schema'
 
   
 
-  @Injectable()
+@Injectable()
   export class DateRepository{
     protected readonly logger = new Logger(DateRepository.name);
   
@@ -14,9 +14,7 @@ import Dated, { DateDocument, DateModelExt } from 'src/schemas/date/date.schema'
       @InjectModel(Dated.name)
       private readonly DateModel: DateModelExt<DateDocument>,
       @InjectConnection() connection: Connection,
-    ) {
-      super(DateModel, connection);
-    }
+    ) {}
 
 
     async updateOneWithQuery(
@@ -42,7 +40,7 @@ import Dated, { DateDocument, DateModelExt } from 'src/schemas/date/date.schema'
         separated: data.separated,
         code: data.code,
       });
-      return await super.createGenId(dataToCreate);
+      return await this.createGenId(dataToCreate);
     }
     async getLastCode(): Promise<string> {
       const lastDocument = await this.DateModel.aggregate<DateAttributes>([
