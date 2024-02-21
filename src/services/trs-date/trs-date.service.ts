@@ -24,7 +24,7 @@ import {
   
     async set(dataDto: CreateDateDto): Promise<DateAttributes> {
       try {
-        const { name, telefono, servicio, date, separated } = dataDto;
+        const { name, telefono, servicio, separated } = dataDto;
         const lastCode = await this.dateRepository.getLastCode();
   
         const incrementar = (cadena: string) => {
@@ -40,7 +40,6 @@ import {
           name,
           telefono,
           servicio,
-          date,
           separated,
           code: nextCode,
         };

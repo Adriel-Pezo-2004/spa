@@ -32,12 +32,6 @@ export class CreateDateDto extends OmitType(DateAttributes, [
     @IsOptional()
     servicio: ServiceAttributes;
 
-    @ApiProperty({
-        required: true,
-    })
-    @IsDate()
-    @IsNotEmpty()
-    date: Date;
 
     @ApiProperty({
         required: false,

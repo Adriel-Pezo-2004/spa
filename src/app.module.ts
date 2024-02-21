@@ -4,7 +4,7 @@ import { DateModule } from './services/trs-date/trs-date.module';
 import { DateRepository } from './services/trs-date/trs-date.repository';
 
 @Module({
-  imports: [MongooseModule.forRoot('mongodb://127.0.0.1:27017/budadb'),
+  imports: [MongooseModule.forRoot('mongodb://localhost:27017'),
   DateModule,],
   controllers: [],
   providers: [],

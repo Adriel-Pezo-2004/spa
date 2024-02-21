@@ -38,13 +38,6 @@ export default class DateAttributes extends IDeletableModel{
     servicio: ServiceAttributes;
 
     @ApiProperty({
-        required: true,
-    })
-    @IsDate()
-    @IsNotEmpty()
-    date: Date;
-
-    @ApiProperty({
         required: false,
         default: '1'
       })
