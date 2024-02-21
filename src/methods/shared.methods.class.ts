@@ -12,7 +12,7 @@ import {
   // @ts-ignore
   import { LeanDocument } from 'mongoose';
   import { BulkWriteResult } from 'mongodb';
-import { CombinedFilter } from 'src/utils/query,util';
+import { CombinedFilter } from 'src/utils/query.util';
   
   export interface ModelExt<T> extends Model<T> {
     getDocuments: (
