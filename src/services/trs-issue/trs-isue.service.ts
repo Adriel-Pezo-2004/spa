@@ -2,7 +2,7 @@ import { HttpException, HttpStatus, Injectable } from "@nestjs/common";
 import { CreateIssueDto } from "./dto/create-issue.dto";
 import IssueAttributes from "src/schemas/issue/issue.entity";
 import { IssueErrors } from "src/schemas/issue/issue.error";
-import { IssueRepository } from "./trs.issue.repository";
+import { IssueRepository } from "./trs-issue.repository";
 
 
 
