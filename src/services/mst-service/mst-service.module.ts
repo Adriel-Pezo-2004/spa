@@ -15,4 +15,4 @@ import { ServiceRepository } from './mst-service.repository';
   providers: [ServiceService, ServiceRepository],
   exports: [ServiceRepository]
 })
-export class DateModule{}
+export class ServiceModule{}
