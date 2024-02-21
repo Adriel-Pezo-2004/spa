@@ -17,6 +17,7 @@ export class CreateIssueDto extends OmitType(IssueAttributes, [
 
     @ApiProperty({
         required: true,
+        description: 'Pago efectivo-tarjeta-yape'
     })
     @IsString()
     @IsNotEmpty()

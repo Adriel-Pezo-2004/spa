@@ -1,7 +1,9 @@
 import { Model, Mongoose, Schema } from "mongoose";
 import { ServiceSchema } from "../service/service.schema";
 import IssueAttributes from "./issue.entity";
+import { ModelExt } from "src/methods/shared.methods.class";
 
+export type IssueModelExt<T> = ModelExt<T>;
 export type IssueDocument = Document & IssueAttributes;
 export const IssueSchema: Schema = new Schema (
     {
