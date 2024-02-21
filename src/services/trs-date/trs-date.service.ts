@@ -46,6 +46,7 @@ import {
   
         return this.dateRepository.createGenId(dataToSave);
       } catch (error) {
+        console.log(error)
         throw new HttpException(
           {
             message: DateErrors.DATE_CREATE_ERROR,
