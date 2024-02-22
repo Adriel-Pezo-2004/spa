@@ -23,7 +23,8 @@ export const DateSchema: Schema = new Schema (
     { timestamps: true },
 );
 
-
+DateSchema.statics.createGenId = CommonSchemaClass.createGenId;
+DateSchema.statics.updateOneWithQuery = CommonSchemaClass.updateOneWithQuery;
 
 const Dated  = (mongoose: Mongoose) =>
   mongoose.model<DateDocument>('Date', DateSchema, 'trs-date') as Model<
