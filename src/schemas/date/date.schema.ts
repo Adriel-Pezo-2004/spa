@@ -23,11 +23,6 @@ export const DateSchema: Schema = new Schema (
     { timestamps: true },
 );
 
-DateSchema.statics.getDocuments = CommonSchemaClass.getDocuments;
-DateSchema.statics.getDocument = CommonSchemaClass.getDocument;
-DateSchema.statics.getDocumentsCount = CommonSchemaClass.getDocumentsCount;
-DateSchema.statics.patchDocumentsBulk = CommonSchemaClass.patchDocumentsBulk;
-DateSchema.statics.getDocumentsWithCount = CommonSchemaClass.getDocumentsWithCount;
 DateSchema.statics.createGenId = CommonSchemaClass.createGenId;
 DateSchema.statics.updateOneWithQuery = CommonSchemaClass.updateOneWithQuery;
 
