@@ -25,8 +25,7 @@ export class IssueService {
     return await this.issueRepository.find({
       relations:{
         issueCode:true,
-        datedCode:true,
-        pay:true
+        datedCode:true
       }
     });
   }
@@ -35,8 +34,7 @@ export class IssueService {
     return await this.issueRepository.findOne({
       relations:{
         issueCode:true,
-        datedCode:true,
-        pay:true
+        datedCode:true
       },
       where:{
         num_solicitud:id
