@@ -1,3 +1,4 @@
+import { Dated } from 'src/date/entities/date.entity';
 import { Column, Entity, OneToMany, PrimaryColumn } from 'typeorm';
 
 @Entity({ name: 'servicio' })
@@ -19,8 +20,8 @@ export class Servicio {
   Dated: any;
   
   @OneToMany(
-    () => Date,
-    (Date) => Date.Serviced,
+    () => Dated,
+    (Dated) => Dated.servicios,
   )
-  dates: Date[];
+  dates: Dated[];
 }
