@@ -9,24 +9,28 @@ import { UpdateServiceDto } from './dto/update-service.dto';
 export class ServicesService {
   constructor(
     @InjectRepository(Servicio)
-    private antecedenteRepository:Repository<Servicio>,
+    private servicioRepository:Repository<Servicio>,
     //private tituloPropiedadService:TituloPropiedadService
   ){
 
   }
-
-
-
   async create(serviceCode:string,createServiceDto: CreateServiceDto) {
-    try{
-      //const titulo=await this.tituloPropiedadService.findOne(idTitulo)
-      //const antecedente=await this.antecedenteRepository.save(createAntecedenteDto)
-      //titulo.antecedente=antecedente;
-      //return await this.tituloPropiedadService.guardar(titulo)
+    try {
+      const { name, price } = createServiceDto;
+      const nuevoServicio = this.servicioRepository.create({
+        serviceCode,
+        name,
+        price,
 
-    }catch(error){
+      });
 
-        throw new InternalServerErrorException()
+      // Guarda el nuevo servicio en la base de datos
+      const servicioCreado = await this.servicioRepository.save(nuevoServicio);
+
+      return servicioCreado;
+    } catch (error) {
+      // Maneja los errores 
+      console.error(error);
     }
   }
 

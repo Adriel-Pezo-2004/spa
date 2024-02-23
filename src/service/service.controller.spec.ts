@@ -1,5 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { AntecedentesController } from './antecedentes.controller';
+import { AntecedentesController } from './service.controller';
 import { ServicesService } from './service.service';
 
 describe('AntecedentesController', () => {

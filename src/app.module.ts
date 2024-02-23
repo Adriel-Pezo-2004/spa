@@ -3,11 +3,9 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { PersonaJuridicaModule } from './persona-juridica/persona-juridica.module';
-import { AntecedentesModule } from './antecedentes/antecedentes.module';
-import { ClienteModule } from './cliente/cliente.module';
-import { TituloPropiedadModule } from './titulo-propiedad/titulo-propiedad.module';
-import { IntervinientesModule } from './intervinientes/intervinientes.module';
+import { ServicesModule } from './service/service.module';
+import { TituloPropiedadModule } from './issue/titulo-propiedad.module';
+import { IntervinientesModule } from './date/intervinientes.module';
 
 @Module({
   imports: [
@@ -24,14 +22,12 @@ import { IntervinientesModule } from './intervinientes/intervinientes.module';
         port:3306,
         username:'root',
         password:'camila29',
-        database:'inscripciones_sunarp',
+        database:'spadb',
         entities:[__dirname+'/**/*.entity{.ts,.js}'],
         synchronize:true
       }
     ),
-    PersonaJuridicaModule,
-    AntecedentesModule,
-    ClienteModule,
+    ServicesModule,
     TituloPropiedadModule,
     IntervinientesModule
   ],
