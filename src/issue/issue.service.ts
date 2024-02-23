@@ -24,10 +24,9 @@ export class IssueService {
   async findAll() {
     return await this.issueRepository.find({
       relations:{
-        antecedente:true,
-        cliente:true,
-        persona_juridica:true,
-        intervinientes:true
+        issueCode:true,
+        datedCode:true,
+        pay:true
       }
     });
   }
@@ -35,10 +34,9 @@ export class IssueService {
   async findOne(id: string) {
     return await this.issueRepository.findOne({
       relations:{
-        antecedente:true,
-        cliente:true,
-        persona_juridica:true,
-        intervinientes:true
+        issueCode:true,
+        datedCode:true,
+        pay:true
       },
       where:{
         num_solicitud:id
