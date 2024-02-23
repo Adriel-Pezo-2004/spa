@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
-import { TituloPropiedadService } from './titulo-propiedad.service';
-import { TituloPropiedadController } from './titulo-propiedad.controller';
+import { TituloPropiedadService } from './issue.service';
+import { TituloPropiedadController } from './issue.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { TituloPropiedad } from './entities/issue.entity';
 
