@@ -1,7 +1,7 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
 import { TituloPropiedadService } from './titulo-propiedad.service';
-import { CreateTituloPropiedadDto } from './dto/create-titulo-propiedad.dto';
-import { UpdateTituloPropiedadDto } from './dto/update-titulo-propiedad.dto';
+import { CreateTituloPropiedadDto } from './dto/create-issue.dto';
+import { UpdateTituloPropiedadDto } from './dto/update-issue.dto';
 
 @Controller('titulo-propiedad')
 export class TituloPropiedadController {

@@ -1,8 +1,8 @@
 import { Injectable, InternalServerErrorException } from '@nestjs/common';
-import { CreateTituloPropiedadDto } from './dto/create-titulo-propiedad.dto';
-import { UpdateTituloPropiedadDto } from './dto/update-titulo-propiedad.dto';
+import { CreateTituloPropiedadDto } from './dto/create-issue.dto';
+import { UpdateTituloPropiedadDto } from './dto/update-issue.dto';
 import { InjectRepository } from '@nestjs/typeorm';
-import { TituloPropiedad } from './entities/titulo-propiedad.entity';
+import { TituloPropiedad } from './entities/issue.entity';
 import { Repository } from 'typeorm';
 
 @Injectable()
