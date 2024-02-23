@@ -15,12 +15,12 @@ import { UpdateServiceDto } from './dto/update-service.dto';
 export class AntecedentesController {
   constructor(private readonly servicesService: ServicesService) {}
 
-  @Post(':idTitulo')
+  @Post(':serviceCode')
   create(
-    @Param('idTitulo') idTitulo: string,
+    @Param('serviceCode') serviceCode: string,
     @Body() createServiceDto: CreateServiceDto,
   ) {
-    return this.servicesService.create(idTitulo, createServiceDto);
+    return this.servicesService.create(serviceCode, createServiceDto);
   }
 
   @Get()
