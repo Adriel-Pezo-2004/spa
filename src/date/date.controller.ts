@@ -1,5 +1,5 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
-import { IntervinientesService } from './intervinientes.service';
+import { IntervinientesService } from './date.service';
 import { CreateIntervinienteDto } from './dto/create-date.dto';
 import { UpdateIntervinienteDto } from './dto/update-date.dto';
 

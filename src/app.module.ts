@@ -4,8 +4,6 @@ import { AppService } from './app.service';
 import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ServicesModule } from './service/service.module';
-import { TituloPropiedadModule } from './issue/titulo-propiedad.module';
-import { IntervinientesModule } from './date/intervinientes.module';
 
 @Module({
   imports: [
@@ -28,8 +26,7 @@ import { IntervinientesModule } from './date/intervinientes.module';
       }
     ),
     ServicesModule,
-    TituloPropiedadModule,
-    IntervinientesModule
+
   ],
   controllers: [AppController],
   providers: [AppService],
