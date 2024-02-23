@@ -29,7 +29,7 @@ export class IssueService {
 
   async findOne(issueCode: string) {
     return await this.issueRepository.findOne({
-      relations: ['issueCode', 'datedCode', 'pay'],
+      relations: ['issueCode', 'datedCode', 'pay'], 
       where:{
         issueCode:issueCode
       }
