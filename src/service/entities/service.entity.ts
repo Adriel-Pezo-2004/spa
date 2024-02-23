@@ -17,10 +17,10 @@ export class Servicio {
   })
   price: number;
   Dated: any;
-  /*
+  
   @OneToMany(
-    () => TituloPropiedad,
-    (tituloPropiedad) => tituloPropiedad.antecedente,
+    () => Date,
+    (Date) => Date.Serviced,
   )
-  titulosPropiedades: TituloPropiedad[];*/
+  dates: Date[];
 }
