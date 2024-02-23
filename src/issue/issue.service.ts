@@ -1,20 +1,20 @@
 import { Injectable, InternalServerErrorException } from '@nestjs/common';
-import { CreateTituloPropiedadDto } from './dto/create-issue.dto';
-import { UpdateTituloPropiedadDto } from './dto/update-issue.dto';
+import { CreateIssueDto } from './dto/create-issue.dto';
+import { UpdateIssueDto } from './dto/update-issue.dto';
 import { InjectRepository } from '@nestjs/typeorm';
-import { TituloPropiedad } from './entities/issue.entity';
+import { Issue } from './entities/issue.entity';
 import { Repository } from 'typeorm';
 
 @Injectable()
 export class IssueService {
   constructor(
-    @InjectRepository(TituloPropiedad)
-    private tituloPropiedadRepository: Repository<TituloPropiedad>,
+    @InjectRepository(Issue)
+    private issueRepository: Repository<Issue>,
   ) {}
-  async create(createTituloPropiedadDto: CreateTituloPropiedadDto) {
+  async create(createIssueDto: CreateIssueDto) {
     try {
-      return await this.tituloPropiedadRepository.save(
-        createTituloPropiedadDto,
+      return await this.issueRepository.save(
+        createIssueDto,
       );
     } catch (error) {
       throw new InternalServerErrorException('Algo salio terriblemente mal');
@@ -22,7 +22,7 @@ export class IssueService {
   }
 
   async findAll() {
-    return await this.tituloPropiedadRepository.find({
+    return await this.issueRepository.find({
       relations:{
         antecedente:true,
         cliente:true,
@@ -33,7 +33,7 @@ export class IssueService {
   }
 
   async findOne(id: string) {
-    return await this.tituloPropiedadRepository.findOne({
+    return await this.issueRepository.findOne({
       relations:{
         antecedente:true,
         cliente:true,
@@ -46,16 +46,16 @@ export class IssueService {
     });
   }
 
-  update(id: number, updateTituloPropiedadDto: UpdateTituloPropiedadDto) {
+  update(id: number, updateIssueDto: UpdateIssueDto) {
     return `This action updates a #${id} tituloPropiedad`;
   }
 
   remove(id: number) {
     return `This action removes a #${id} tituloPropiedad`;
   }
-  async guardar(titulo:TituloPropiedad){
+  async guardar(issue:Issue){
     try{
-      return await this.tituloPropiedadRepository.save(titulo)
+      return await this.issueRepository.save(issue)
     }catch(error){
       throw new InternalServerErrorException()
     }

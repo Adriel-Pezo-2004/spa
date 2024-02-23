@@ -22,6 +22,4 @@ export class Issue {
     type: 'number',
   })
   pay: number;
-
-
 }

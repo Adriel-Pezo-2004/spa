@@ -1,34 +1,34 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
-import { TituloPropiedadService } from './issue.service';
-import { CreateTituloPropiedadDto } from './dto/create-issue.dto';
-import { UpdateTituloPropiedadDto } from './dto/update-issue.dto';
+import { IssueService } from './issue.service';
+import { CreateIssueDto } from './dto/create-issue.dto';
+import { UpdateIssueDto } from './dto/update-issue.dto';
 
 @Controller('issue')
 export class IssueController {
   constructor(private readonly issueService: IssueService) {}
 
   @Post()
-  create(@Body() createTituloPropiedadDto: CreateTituloPropiedadDto) {
-    return this.tituloPropiedadService.create(createTituloPropiedadDto);
+  create(@Body() createTituloPropiedadDto: CreateIssueDto) {
+    return this.issueService.create(createTituloPropiedadDto);
   }
 
   @Get()
   findAll() {
-    return this.tituloPropiedadService.findAll();
+    return this.issueService.findAll();
   }
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.tituloPropiedadService.findOne(id);
+    return this.issueService.findOne(id);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateTituloPropiedadDto: UpdateTituloPropiedadDto) {
-    return this.tituloPropiedadService.update(+id, updateTituloPropiedadDto);
+  update(@Param('id') id: string, @Body() updateIssueDto: UpdateIssueDto) {
+    return this.issueService.update(+id, updateIssueDto);
   }
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.tituloPropiedadService.remove(+id);
+    return this.issueService.remove(+id);
   }
 }
