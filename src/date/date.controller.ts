@@ -20,7 +20,7 @@ export class DateController {
 
   @Get(':datedCode')
   findOne(@Param('datedCode') datedCode: string) {
-    return this.dateService.findOne(+datedCode);
+    return this.dateService.findOne(datedCode);
   }
 
   @Patch(':datedCode')

@@ -18,8 +18,6 @@ export class Issue {
     length: 10,
   })
   datedCode: string;
-  @Column({
-    type: 'number',
-  })
+  @Column("decimal", { precision: 5, scale: 2 })
   pay: number;
 }

@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsString, IsNumber, Length } from 'class-validator';
+import { IsNotEmpty, IsString, IsNumber, Length, IsDecimal } from 'class-validator';
 
 export class CreateIssueDto {
   @IsNotEmpty()
@@ -8,6 +8,6 @@ export class CreateIssueDto {
   @IsString()
   datedCode: string;
   @IsNotEmpty()
-  @IsNumber()
+  @IsDecimal()
   pay: number;
 }

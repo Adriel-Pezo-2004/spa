@@ -22,7 +22,7 @@ export class Dated {
   
   @ManyToOne(
     () => Servicio,
-    (Servicio) => Servicio.Dated,
+    (Servicio) => Servicio.dates,
   )
   servicios: Servicio[];
 }

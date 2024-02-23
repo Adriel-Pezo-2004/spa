@@ -13,11 +13,8 @@ export class Servicio {
     length: 50,
   })
   name: string;
-  @Column({
-    type: 'number'
-  })
+  @Column("decimal", { precision: 5, scale: 2 })
   price: number;
-  Dated: any;
   
   @OneToMany(
     () => Dated,

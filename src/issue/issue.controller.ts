@@ -17,18 +17,18 @@ export class IssueController {
     return this.issueService.findAll();
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
+  @Get(':issueCode')
+  findOne(@Param('issueCode') id: string) {
     return this.issueService.findOne(id);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateIssueDto: UpdateIssueDto) {
-    return this.issueService.update(+id, updateIssueDto);
+  @Patch(':issueCode')
+  update(@Param('issueCode') issueCode: string, @Body() updateIssueDto: UpdateIssueDto) {
+    return this.issueService.update(issueCode, updateIssueDto);
   }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.issueService.remove(+id);
+  @Delete(':issueCode')
+  remove(@Param('issueCode') issueCode: string) {
+    return this.issueService.remove(issueCode);
   }
 }

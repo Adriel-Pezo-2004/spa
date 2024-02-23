@@ -36,12 +36,12 @@ export class IssueService {
     });
   }
 
-  update(id: number, updateIssueDto: UpdateIssueDto) {
-    return `This action updates a #${id} tituloPropiedad`;
+  update(issueCode: string, updateIssueDto: UpdateIssueDto) {
+    return `This action updates a #${issueCode} tituloPropiedad`;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} tituloPropiedad`;
+  remove(issueCode: string) {
+    return `This action removes a #${issueCode} tituloPropiedad`;
   }
   async guardar(issue:Issue){
     try{

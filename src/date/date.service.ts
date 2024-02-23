@@ -27,7 +27,7 @@ export class DateService {
     return `This action returns all dates`;
   }
 
-  findOne(datedCode: number) {
+  findOne(datedCode: string) {
     return `This action returns a #${datedCode} dates`;
   }
 
