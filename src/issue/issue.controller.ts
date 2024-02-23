@@ -3,9 +3,9 @@ import { TituloPropiedadService } from './issue.service';
 import { CreateTituloPropiedadDto } from './dto/create-issue.dto';
 import { UpdateTituloPropiedadDto } from './dto/update-issue.dto';
 
-@Controller('titulo-propiedad')
-export class TituloPropiedadController {
-  constructor(private readonly tituloPropiedadService: TituloPropiedadService) {}
+@Controller('issue')
+export class IssueController {
+  constructor(private readonly issueService: IssueService) {}
 
   @Post()
   create(@Body() createTituloPropiedadDto: CreateTituloPropiedadDto) {

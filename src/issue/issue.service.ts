@@ -6,7 +6,7 @@ import { TituloPropiedad } from './entities/issue.entity';
 import { Repository } from 'typeorm';
 
 @Injectable()
-export class TituloPropiedadService {
+export class IssueService {
   constructor(
     @InjectRepository(TituloPropiedad)
     private tituloPropiedadRepository: Repository<TituloPropiedad>,

@@ -1,15 +1,13 @@
 import { Module } from '@nestjs/common';
-import { IntervinientesService } from './date.service';
-import { IntervinientesController } from './date.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Interviniente } from './entities/date.entity';
-import { TituloPropiedadModule } from 'src/titulo-propiedad/titulo-propiedad.module';
+import { Dated } from './entities/date.entity';
+import { DateService } from './date.service';
+import { DateController } from './date.controller';
 
 @Module({
   imports:[
-    TituloPropiedadModule,
-    TypeOrmModule.forFeature([Interviniente])],
-  controllers: [IntervinientesController],
-  providers: [IntervinientesService],
+    TypeOrmModule.forFeature([Dated])],
+  controllers: [DateController],
+  providers: [DateService],
 })
-export class IntervinientesModule {}
+export class DateModule {}

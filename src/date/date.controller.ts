@@ -1,34 +1,35 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
-import { IntervinientesService } from './date.service';
-import { CreateIntervinienteDto } from './dto/create-date.dto';
-import { UpdateIntervinienteDto } from './dto/update-date.dto';
+import { DateService } from './date.service';
+import { CreateDateDto } from './dto/create-date.dto';
+import { UpdateDateDto } from './dto/update-date.dto';
 
-@Controller('intervinientes')
-export class IntervinientesController {
-  constructor(private readonly intervinientesService: IntervinientesService) {}
 
-  @Post(':id')
-  create(@Param('id') idTitulo:string,@Body() createIntervinienteDto: CreateIntervinienteDto) {
-    return this.intervinientesService.create(idTitulo,createIntervinienteDto);
+@Controller('date')
+export class DateController {
+  constructor(private readonly dateService: DateService) {}
+
+  @Post(':datedCode')
+  create(@Param('datedCode') datedCode:string,@Body() createDateDto: CreateDateDto) {
+    return this.dateService.create(datedCode,createDateDto);
   }
 
   @Get()
   findAll() {
-    return this.intervinientesService.findAll();
+    return this.dateService.findAll();
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.intervinientesService.findOne(+id);
+  @Get(':datedCode')
+  findOne(@Param('datedCode') datedCode: string) {
+    return this.dateService.findOne(+datedCode);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateIntervinienteDto: UpdateIntervinienteDto) {
-    return this.intervinientesService.update(+id, updateIntervinienteDto);
+  @Patch(':datedCode')
+  update(@Param('datedCode') datedCode: string, @Body() updateDateDto: UpdateDateDto) {
+    return this.dateService.update(datedCode, updateDateDto);
   }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.intervinientesService.remove(+id);
+  @Delete(':datedCode')
+  remove(@Param('datedCode') datedCode: string) {
+    return this.dateService.remove(datedCode);
   }
 }
