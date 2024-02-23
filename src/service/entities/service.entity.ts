@@ -1,4 +1,3 @@
-import { TituloPropiedad } from 'src/titulo-propiedad/entities/titulo-propiedad.entity';
 import { Column, Entity, OneToMany, PrimaryColumn } from 'typeorm';
 
 @Entity({ name: 'servicio' })
@@ -17,6 +16,7 @@ export class Servicio {
     type: 'number'
   })
   price: number;
+  Dated: any;
   /*
   @OneToMany(
     () => TituloPropiedad,

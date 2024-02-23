@@ -1,4 +1,4 @@
-import { TituloPropiedad } from "src/titulo-propiedad/entities/titulo-propiedad.entity";
+import { Servicio } from "src/service/entities/service.entity";
 import { Column, Entity, ManyToOne, OneToMany, PrimaryColumn } from "typeorm";
 
 
@@ -19,11 +19,11 @@ export class Dated {
     length: 50,
   })
   nameClient: string;
-  /*
-  @OneToMany(
-    () => TituloPropiedad,
-    (tituloPropiedad) => tituloPropiedad.antecedente,
+  
+  @ManyToOne(
+    () => Servicio,
+    (Servicio) => Servicio.Dated,
   )
-  titulosPropiedades: TituloPropiedad[];*/
+  servicios: Servicio[];
 }
 
