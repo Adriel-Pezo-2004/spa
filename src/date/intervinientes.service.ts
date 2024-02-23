@@ -2,7 +2,6 @@ import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import { CreateDateDto } from './dto/create-date.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { TituloPropiedadService } from 'src/titulo-propiedad/titulo-propiedad.service';
 import { Dated } from './entities/date.entity';
 import { UpdateDateDto } from './dto/update-date.dto';
 

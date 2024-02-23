@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { AntecedentesService } from './antecedentes.service';
+import { AntecedentesService } from './service.service';
 import { AntecedentesController } from './antecedentes.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Antecedente } from './entities/service.entity';

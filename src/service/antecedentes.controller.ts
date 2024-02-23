@@ -7,42 +7,42 @@ import {
   Param,
   Delete,
 } from '@nestjs/common';
-import { AntecedentesService } from './antecedentes.service';
-import { CreateAntecedenteDto } from './dto/create-service.dto';
-import { UpdateAntecedenteDto } from './dto/update-service.dto';
+import { ServicesService } from './service.service';
+import { CreateServiceDto } from './dto/create-service.dto';
+import { UpdateServiceDto } from './dto/update-service.dto';
 
-@Controller('antecedentes')
+@Controller('services')
 export class AntecedentesController {
-  constructor(private readonly antecedentesService: AntecedentesService) {}
+  constructor(private readonly servicesService: ServicesService) {}
 
   @Post(':idTitulo')
   create(
     @Param('idTitulo') idTitulo: string,
-    @Body() createAntecedenteDto: CreateAntecedenteDto,
+    @Body() createServiceDto: CreateServiceDto,
   ) {
-    return this.antecedentesService.create(idTitulo, createAntecedenteDto);
+    return this.servicesService.create(idTitulo, createServiceDto);
   }
 
   @Get()
   findAll() {
-    return this.antecedentesService.findAll();
+    return this.servicesService.findAll();
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.antecedentesService.findOne(+id);
+  @Get(':serviceCode')
+  findOne(@Param('serviceCode') serviceCode: string) {
+    return this.servicesService.findOne(serviceCode);
   }
 
-  @Patch(':id')
+  @Patch(':serviceCode')
   update(
-    @Param('id') id: string,
-    @Body() updateAntecedenteDto: UpdateAntecedenteDto,
+    @Param('serviceCode') serviceCode: string,
+    @Body() updateServiceDto: UpdateServiceDto,
   ) {
-    return this.antecedentesService.update(+id, updateAntecedenteDto);
+    return this.servicesService.update(serviceCode, updateServiceDto);
   }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.antecedentesService.remove(+id);
+  @Delete(':serviceCode')
+  remove(@Param('serviceCode') serviceCode: string) {
+    return this.servicesService.remove(serviceCode);
   }
 }
