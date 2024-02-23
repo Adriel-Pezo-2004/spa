@@ -23,23 +23,15 @@ export class IssueService {
 
   async findAll() {
     return await this.issueRepository.find({
-      relations:{
-        issueCode:true,
-        datedCode:true,
-        pay:true
-      }
+      relations: ['issueCode', 'datedCode', 'pay'], 
     });
   }
 
-  async findOne(id: string) {
+  async findOne(issueCode: string) {
     return await this.issueRepository.findOne({
-      relations:{
-        issueCode:true,
-        datedCode:true,
-        pay:true
-      },
+      relations: ['issueCode', 'datedCode', 'pay'],
       where:{
-        num_solicitud:id
+        issueCode:issueCode
       }
     });
   }
